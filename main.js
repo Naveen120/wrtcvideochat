@@ -20,6 +20,8 @@ peer.on('call',function(call){
     step3(call);
 });
 
+var callCancel;
+
 // Click handlers setup
 $(function(){
     console.log('peer',peer);
@@ -27,14 +29,12 @@ $(function(){
         // Initiate a call!
         console.log('make-call');
         var call = peer.call($('#callto-id').val(), window.localStream);
+        callCancel = call;
         step3(call);
     });
     $('#end-call').click(function(){
         console.log('end-call');
-        streamObj.getTrack().forEach(track => {
-            track.stop();
-        });
-        // window.existingCall.close();
+        callCancel.close();
         step2();
     });
 
