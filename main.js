@@ -34,7 +34,7 @@ $(function(){
         streamObj.getTrack().forEach(track => {
             track.stop();
         });
-        window.existingCall.close();
+        // window.existingCall.close();
         step2();
     });
 
