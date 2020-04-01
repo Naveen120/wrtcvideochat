@@ -69,7 +69,7 @@ function step1(){
         console.log(stream)
         streamObj = stream;
         $('#my-video').prop('srcObject',stream);
-
+            step3();
         window.localStream = stream;
         // step2();
     },function(){ $('#step1-error').show(); });
