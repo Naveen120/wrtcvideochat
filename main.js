@@ -1,5 +1,3 @@
-
-
 const media = navigator.getUserMedia;
 
 var peer = new Peer({
