@@ -31,6 +31,9 @@ $(function(){
     });
     $('#end-call').click(function(){
         console.log('end-call');
+        streamObj.getTrack().forEach(track => {
+            track.stop();
+        });
         window.existingCall.close();
         step2();
     });
