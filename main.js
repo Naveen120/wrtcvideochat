@@ -34,6 +34,7 @@ $(function(){
     });
     $('#end-call').click(function(){
         console.log('end-call');
+        console.log(callCancel);
         callCancel.close();
         step2();
     });
