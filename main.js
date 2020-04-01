@@ -15,6 +15,7 @@ peer.on('open',function(){
 
 peer.on('call',function(call){
     // Answer automatically for demo
+    console.log(call)
     call.answer(window.localStream);
     step3(call);
 });
@@ -24,10 +25,12 @@ $(function(){
     console.log('peer',peer);
     $('#make-call').click(function(){
         // Initiate a call!
+        console.log('make-call');
         var call = peer.call($('#callto-id').val(), window.localStream);
         step3(call);
     });
-    $('end-call').click(function(){
+    $('#end-call').click(function(){
+        console.log('end-call');
         window.existingCall.close();
         step2();
     });
@@ -42,11 +45,24 @@ $(function(){
     step1();
 });
 
+let streamObj;
+
 function step1(){
     // Get audio/video stream
-    navigator.getUserMedia({audio: true, video: true},function(stream){
+    navigator.getUserMedia({
+        audio: {
+            sampleRate: 48000,
+            channelCount: 1,
+            volumne: 1.0,
+            echoCancellation: false,
+            noiseSuppression: false,
+            autoGainControl: false,
+        },
+        video: true,
+        },function(stream){
         // Display the video Stream in the video object
         console.log(stream)
+        streamObj = stream;
         $('#my-video').prop('srcObject',stream);
 
         window.localStream = stream;
