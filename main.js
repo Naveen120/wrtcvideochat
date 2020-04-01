@@ -28,7 +28,6 @@ $(function(){
     $('#make-call').click(function(){
         // Initiate a call!
         console.log('make-call');
-        step1();
         var call = peer.call($('#callto-id').val(), window.localStream);
         callCancel = call;
         step3(call);
@@ -47,8 +46,7 @@ $(function(){
     });
 
     // Get things started
-    // step1();
-    step2();
+    step1();
 });
 
 let streamObj;
@@ -72,13 +70,13 @@ function step1(){
         $('#my-video').prop('srcObject',stream);
 
         window.localStream = stream;
-        // step2();
+        step2();
     },function(){ $('#step1-error').show(); });
 }
 
 function step2(){ 
     // Adjust the UI
-    console.log('step2')
+    console.log('step2');
     $('#step1,#step3').hide();
     $('#step2').show();
 }
@@ -88,6 +86,7 @@ function step3(call){
     if(window.existingCall){
         window.existingCall.close();
     }
+
     // Wait for streamon the call, then setup peer video
     call.on('stream',function(stream){
         $('#their-video').prop('srcObject',stream);
